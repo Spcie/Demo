@@ -1,0 +1,46 @@
+#include "stdio.h"
+#include <vector>
+
+typedef std::vector<int> Int_t;
+typedef std::vector<int>::iterator Itr_t;
+int main(void)
+{
+
+	Int_t m_vInt;
+
+	m_vInt.push_back(1);
+	m_vInt.push_back(2);
+	m_vInt.push_back(3);
+	m_vInt.push_back(4);
+	m_vInt.push_back(5);
+
+	for(int ii = 0; ii < m_vInt.size(); ii++)
+	{
+		int& temp = m_vInt.at(ii);
+		temp++;
+		printf("ii = %d, temp = %d m_vInt.at() = %d \n", ii, temp, m_vInt.at(ii));
+	}
+
+	printf("m_vInt.size() = %d \n",m_vInt.size());
+	int i = 0;
+	for(Itr_t it = m_vInt.begin();it != m_vInt.end();)
+	{
+		printf("i = %d, *it=%d ", i++, *it);
+		if (*it == 3 || *it == 2)
+		{
+			m_vInt.erase(it);
+			printf("delete\n");
+		}
+		else
+		{
+			it++;
+			printf("no delete\n");
+		}
+		printf("-----------------i = %d, *it=%d \n", i, *it);
+	}
+
+	printf("m_vInt.size() = %d \n",m_vInt.size());
+
+	return 0;
+}
+
